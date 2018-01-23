@@ -1,0 +1,105 @@
+/**
+ * MOBILE FIRST!
+ * Base styles should be created for < 480px, then overrided for larger screen
+ * types.
+ */
+
+$sm-screen-width: 480px;
+$md-screen-width: 768px;
+$lg-screen-width: 992px;
+$xl-screen-width: 1200px;
+$sm-screen: $sm-screen-width !default;
+$md-screen: $md-screen-width !default;
+$lg-screen: $lg-screen-width !default;
+$xl-screen: $xl-screen-width !default;
+//Available media queries
+$xs: 'only screen and (max-width : #{$sm-screen})' !default;
+$sm: 'only screen and (min-width : #{$sm-screen})' !default;
+$md: 'only screen and (min-width : #{$md-screen})' !default;
+$lg: 'only screen and (min-width : #{$lg-screen})' !default;
+$xl: 'only screen and (min-width : #{$xl-screen})' !default;
+
+/**
+ * Design for only screen and (max-width : 480px)
+ *
+ * @section Media Queries
+ * @mixin
+ * @param $xs
+ * @example
+ *  @include xs {
+ *    cssAttr: size|type;
+ *  }
+ */
+@mixin xs {
+  @media #{$xs} {
+    @content;
+  }
+}
+
+/**
+ * Design for only screen and (min-width : 480px)
+ *
+ * @section Media Queries
+ * @mixin
+ * @param $sm
+ * @example
+ *  @include sm {
+ *    cssAttr: size|type;
+ *  }
+ */
+@mixin sm {
+  @media #{$sm} {
+    @content;
+  }
+}
+
+/**
+ * Design for only screen and (min-width : 768px)
+ *
+ * @section Media Queries
+ * @mixin
+ * @param $md
+ * @example
+ *  @include md {
+ *    cssAttr: size|type;
+ *  }
+ */
+@mixin md {
+  @media #{$md} {
+    @content;
+  }
+}
+
+/**
+ * Desgin for only screen and (min-width : 992px)
+ *
+ * @section Media Queries
+ * @mixin
+ * @param $lg
+ * @example
+ *  @include lg {
+ *    cssAttr: size|type;
+ *  }
+ */
+@mixin lg {
+  @media #{$lg} {
+    @content;
+  }
+}
+
+/**
+ * Desgin for only screen and (min-width : 1200px)
+ *
+ * @section Media Queries
+ * @mixin
+ * @param $xl
+ * @example
+ *  @include xl {
+ *    cssAttr: size|type;
+ *  }
+ */
+@mixin xl {
+  @media #{$xl} {
+    @content;
+  }
+}

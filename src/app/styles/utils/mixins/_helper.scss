@@ -1,0 +1,85 @@
+/**
+ * Add box shadow over an element
+ *
+ * @section Helpers
+ * @mixin
+ * @param $value
+ * @example
+ *  @include box-shadow(0 2px 4px 0 rgba(0, 0, 0, 0.16));
+ */
+@mixin box-shadow($value) {
+  box-shadow: $value;
+}
+
+/**
+ * Add box shadow over an element
+ *
+ * @section Helpers
+ * @mixin
+ * @param $value
+ * @example
+ *  @include border-radius(10px);
+ */
+@mixin border-radius($value) {
+  border-radius: $value;
+}
+
+/**
+ * Transform helper for css classes
+ *
+ * @section Helpers
+ * @mixin
+ * @param $transforms
+ * @example
+ *  @include transform(scale(0));
+ */
+@mixin transform($transforms) {
+  transform: $transforms;
+}
+
+/**
+ * Transition helper for css classes
+ *
+ * @section Helpers
+ * @mixin
+ * @param $transition
+ * @example
+ *  @include transition(all .2s);
+ */
+@mixin transition($transition) {
+  transition: $transition;
+}
+
+/**
+ * Simple helper to build image url
+ *
+ * @section Helpers
+ * @mixin
+ * @param $name
+ * @example
+ *  @include image-url('logo.svg');
+ */
+@mixin image-url($name) {
+  background-image: url(#{'/images/'}#{$name});
+}
+
+/**
+ * keyframes helper for css classes
+ *
+ * @section Helpers
+ * @mixin
+ * @param $keyframes
+ * @example
+ *  @include keyframes(loader);
+ */
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin placeholder {
+  &::placeholder {
+    @content;
+  }
+}

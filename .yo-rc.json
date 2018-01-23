@@ -1,0 +1,6 @@
+{
+  "generator-reactjs-ff": {
+    "preprocessor": "scss",
+    "usingJest": true
+  }
+}

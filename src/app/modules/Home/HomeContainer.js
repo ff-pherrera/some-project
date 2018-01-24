@@ -11,6 +11,7 @@ const defaultProps = {
 
 const propTypes = {
   header: T.string,
+  actions: T.objectOf(T.any),
 };
 
 const mapStateToProps = state => ({
@@ -25,15 +26,19 @@ class HomeContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.onHeaderChange = this.onHeaderChange.bind(this);
   }
 
   componentDidMount = () => {}
 
-  onSendSummary = () => {}
+  onHeaderChange = (header) => {
+    this.props.actions.setHeader(header);
+  }
 
   render = () => (
     <HomeComponent
       header={this.props.header}
+      onChange={this.onHeaderChange}
     />
   );
 }

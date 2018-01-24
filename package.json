@@ -6,7 +6,8 @@
     "build": "./node_modules/webpack/bin/webpack.js -p --config ./config/webpack-dist.js",
     "lint:css": "stylelint \"./components/**/*.js\"",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./config/webpack-dev.js",
-    "test": "jest --config jest.config.js --coverage"
+    "test": "jest --config jest.config.js --coverage",
+    "test:all": "npm test -- --watchAll"
   },
   "repository": "",
   "license": "",

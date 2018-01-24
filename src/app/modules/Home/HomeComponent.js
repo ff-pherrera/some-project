@@ -1,5 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
+import CustomInput from '../../components/CustomInput/CustomInput';
 
 const defaultProps = {
   header: '',
@@ -7,6 +8,7 @@ const defaultProps = {
 
 const propTypes = {
   header: T.string,
+  onChange: T.func.isRequired,
 };
 
 
@@ -20,6 +22,10 @@ class HomeComponent extends React.Component {
   render() {
     return (
       <div>
+        <CustomInput
+          value={this.props.header}
+          onChange={this.props.onChange}
+        />
         <h1>{this.props.header}</h1>
       </div>
     );

@@ -7,7 +7,7 @@
     "lint:css": "stylelint \"./components/**/*.js\"",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./config/webpack-dev.js",
     "test": "jest --config jest.config.js --coverage",
-    "test:all": "npm test -- --watchAll"
+    "test:watch-all": "npm test -- --watchAll"
   },
   "repository": "",
   "license": "",

@@ -1,4 +1,4 @@
-import { SET_HEADER, CLEAR_HEADER } from '../actions/HomeActionTypes';
+import { SET_HEADER, CLEAR_HEADER } from './HomeActionTypes';
 
 const initialState = {
   header: 'Initial header YAY!',

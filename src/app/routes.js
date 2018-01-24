@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router';
-import HomeContainer from './modules/Home/containers/HomeContainer';
+import HomeContainer from './modules/Home/HomeContainer';
 
 export default(
   <Route>

@@ -2,8 +2,8 @@ import React from 'react';
 import T from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import HomeComponent from './HomeComponent';
-import * as homeActions from './HomeActions';
+import HomeComponent from '../components/HomeComponent';
+import * as homeActions from '../actions/HomeActions';
 
 const defaultProps = {
   header: '',

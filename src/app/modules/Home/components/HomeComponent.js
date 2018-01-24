@@ -1,6 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
-import CustomInput from '../../components/CustomInput/CustomInput';
+import CustomInput from '../../../components/CustomInput/CustomInput';
 
 const defaultProps = {
   header: '',

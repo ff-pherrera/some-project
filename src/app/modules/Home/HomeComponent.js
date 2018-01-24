@@ -1,4 +1,14 @@
 import React from 'react';
+import T from 'prop-types';
+
+const defaultProps = {
+  header: '',
+};
+
+const propTypes = {
+  header: T.string,
+};
+
 
 class HomeComponent extends React.Component {
   constructor(props) {
@@ -10,10 +20,13 @@ class HomeComponent extends React.Component {
   render() {
     return (
       <div>
-        <h1>First Factory - React JS</h1>
+        <h1>{this.props.header}</h1>
       </div>
     );
   }
 }
+
+HomeComponent.defaultProps = defaultProps;
+HomeComponent.propTypes = propTypes;
 
 export default HomeComponent;

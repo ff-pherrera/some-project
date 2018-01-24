@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router';
-import HomeComponent from './modules/Home/Home';
+import HomeComponent from './modules/Home/HomeComponent';
 
 export default(
   <Route>

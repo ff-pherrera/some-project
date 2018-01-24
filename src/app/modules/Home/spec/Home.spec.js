@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Home from '../Home';
+import HomeComponent from '../HomeComponent';
 
-describe('< Home />', () => {
+describe('< HomeComponent />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<Home />);
+    wrapper = shallow(<HomeComponent />);
   });
   test('should render component', () => {
     expect(wrapper.exists()).toBe(true);

@@ -4,32 +4,29 @@ import HomeComponent from '../HomeComponent';
 
 describe('<HomeComponent />', () => {
   let wrapper;
-  let headerProp = "testPropValue";
-  let onChangeProp = jest.fn();
+  let defaultProps;
+  const headerProp = 'testPropValue';
+  let onChangePropSpy;
 
   beforeEach(() => {
-    wrapper = shallow(<HomeComponent header={headerProp} onChange={onChangeProp}/>);
+    onChangePropSpy = jest.fn().mockName('onChange');
+    defaultProps = {
+      header: headerProp,
+      onChange: onChangePropSpy,
+    };
+    wrapper = shallow(<HomeComponent {...defaultProps} />);
   });
 
   test('Should render component', () => {
     expect(wrapper.exists()).toBe(true);
   });
-
   test('Should render header text', () => {
-    const header = wrapper.find('h1');
-
-    expect(header.text()).toBe(headerProp);
+    expect(wrapper.find('h1').text()).toBe(headerProp);
   });
-
-  test('CustomInput child with correct header prop', () => {
-    let customInput = wrapper.find('CustomInput');
-
-    expect(customInput.prop('value')).toBe(headerProp);
-  });
-
-  test('CustomInput child with correct onChange prop', () => {
-    let customInput = wrapper.find('CustomInput');
-
-    expect(customInput.prop('onChange')).toBeDefined();
+  test('Should pass correct props to CustomInput', () => {
+    expect(wrapper.find('CustomInput').prop('value')).toBe(headerProp);
+    expect(wrapper.find('CustomInput').prop('onChange')).toBeDefined();
+    // expect(wrapper.find('CustomInput').prop('onChange'))
+    //   .toBe(expect.any(Function));
   });
 });

@@ -11,26 +11,17 @@ const propTypes = {
   onChange: T.func.isRequired,
 };
 
-
-class HomeComponent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <div>
-        <CustomInput
-          value={this.props.header}
-          onChange={this.props.onChange}
-        />
-        <h1>{this.props.header}</h1>
-      </div>
-    );
-  }
-}
+function HomeComponent() {
+  return (
+    React.Fragment(
+      <CustomInput
+        value={this.props.header}
+        onChange={this.props.onChange}
+      />,
+      <h1>{this.props.header}</h1>
+    )
+  );
+};
 
 HomeComponent.defaultProps = defaultProps;
 HomeComponent.propTypes = propTypes;

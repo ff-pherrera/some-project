@@ -35,12 +35,12 @@ class HomeContainer extends React.Component {
     this.props.actions.setHeader(header);
   }
 
-  render = () => (
+  render() {
     <HomeComponent
       header={this.props.header}
       onChange={this.onHeaderChange}
     />
-  );
+  };
 }
 
 HomeContainer.defaultProps = defaultProps;

@@ -22,25 +22,12 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(homeActions, dispatch),
 });
 
-class HomeContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onHeaderChange = this.onHeaderChange.bind(this);
-  }
-
-  onHeaderChange = (header) => {
-    this.props.actions.setHeader(header);
-  }
-
-  render() {
-    return (
-      <HomeComponent
-        header={this.props.header}
-        onChange={this.onHeaderChange}
-      />
-    );
-  }
-}
+const HomeContainer = props => (
+  <HomeComponent
+    header={props.header}
+    onChange={props.actions.setHeader}
+  />
+);
 
 HomeContainer.defaultProps = defaultProps;
 HomeContainer.propTypes = propTypes;

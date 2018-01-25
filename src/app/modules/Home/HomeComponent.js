@@ -11,17 +11,15 @@ const propTypes = {
   onChange: T.func.isRequired,
 };
 
-function HomeComponent(props) {
-  return (
-    <React.Fragment>
-      <CustomInput
-        value={props.header}
-        onChange={props.onChange}
-      />,
-      <h1>{props.header}</h1>,
-    </React.Fragment>
-  );
-}
+const HomeComponent = props => (
+  <React.Fragment>
+    <CustomInput
+      value={props.header}
+      onChange={props.onChange}
+    />,
+    <h1>{props.header}</h1>,
+  </React.Fragment>
+);
 
 HomeComponent.defaultProps = defaultProps;
 HomeComponent.propTypes = propTypes;

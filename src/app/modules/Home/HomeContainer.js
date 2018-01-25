@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(homeActions, dispatch),
 });
 
-const HomeContainer = props => (
+export const HomeContainer = props => (
   <HomeComponent
     header={props.header}
     onChange={props.actions.setHeader}

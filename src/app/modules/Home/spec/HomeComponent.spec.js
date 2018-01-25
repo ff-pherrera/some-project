@@ -17,16 +17,19 @@ describe('<HomeComponent />', () => {
     wrapper = shallow(<HomeComponent {...defaultProps} />);
   });
 
-  test('Should render component', () => {
+  test('should render component', () => {
     expect(wrapper.exists()).toBe(true);
   });
-  test('Should render header text', () => {
+
+  test('should render header text', () => {
     expect(wrapper.find('h1').text()).toBe(headerProp);
   });
-  test('Should pass correct props to CustomInput', () => {
+
+  test('should pass correct props to CustomInput', () => {
     expect(wrapper.find('CustomInput').prop('value')).toBe(headerProp);
     expect(wrapper.find('CustomInput').prop('onChange')).toBeTruthy();
     // expect(wrapper.find('CustomInput').prop('onChange'))
     //   .toBe(expect.any(Function));
   });
+
 });

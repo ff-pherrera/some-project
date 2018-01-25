@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router';
-import HomeContainer from './modules/Home/HomeContainer';
+import Home from './modules/Home/HomeContainer';
 
 export default(
   <Route>
     <Route
       path="/"
-      component={HomeContainer}
+      component={Home}
     />
   </Route>
 );

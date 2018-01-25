@@ -17,15 +17,15 @@ describe('<CustomInput/>', () => {
     wrapper = shallow(<CustomInput {...defaultProps} />);
   });
 
-  test('Should render component', () => {
+  test('should render component', () => {
     expect(wrapper.exists()).toBe(true);
   });
-  test('Should pass correct props to input', () => {
+  test('should pass correct props to input', () => {
     expect(wrapper.find('input').prop('value')).toBe(valueProp);
     expect(wrapper.find('input').prop('onChange')).toBeTruthy();
     // expect(wrapper.find('input').prop('onChange')).toBe(expect.any(Function));
   });
-  test('Should call onChange prop from input', () => {
+  test('should call onChange prop from input', () => {
     expect(wrapper.find('input').prop('onChange')).toBeTruthy();
     // expect(wrapper.find('input').prop('onChange')).toBe(expect.any(Function));
     wrapper.find('input').simulate('change', { target: { value: valueProp } });

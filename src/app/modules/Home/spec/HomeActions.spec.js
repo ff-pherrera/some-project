@@ -1,13 +1,28 @@
 import * as actions from '../HomeActions';
+import * as actionTypes from '../HomeActionTypes';
 
 describe('HomeActions', () => {
-  const value = 'someValue';
+  describe('Sync actions', () => {
+    let header;
+    let expectedAction;
 
-  test('Should dispatch someValue', () => {
-    setHeader().
-    expect(wrapper.find('CustomInput').prop('value')).toBe(headerProp);
-    expect(wrapper.find('CustomInput').prop('onChange')).toBeTruthy();
-    // expect(wrapper.find('CustomInput').prop('onChange'))
-    //   .toBe(expect.any(Function));
+    test('should create an action to set the header', () => {
+      header = 'New Header';
+      expectedAction = {
+        type: actionTypes.SET_HEADER,
+        header
+      }
+      expect(actions.setHeader(header)).toEqual(expectedAction)
+    });
+
+    test('should create an action to clear the header', () => {
+      expectedAction = {
+        type: actionTypes.CLEAR_HEADER,
+      }
+      expect(actions.clearHeader()).toEqual(expectedAction)
+    });
+  });
+  describe('Async actions', () => {
+    // Set tests in here for async actions, using redux-thunk
   });
 });

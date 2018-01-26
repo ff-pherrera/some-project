@@ -81,10 +81,8 @@
     "describe": true,
     "beforeEach": true,
     "expect": true,
-    "it": true,
     "afterEach": true,
-    "jasmine": true,
-    "spyOn": true,
+    "jest": true,
     "test": true
   }
 }

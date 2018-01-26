@@ -1,20 +1,21 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import HomeContainer from '../HomeContainer';
+import { HomeWrapper } from '../HomeContainer';
 
 describe('<HomeContainer />', () => {
   let wrapper;
   let defaultProps;
-  const headerProp = 'testPropValue';
-  let onChangePropSpy;
+  let setHeaderSpy;
 
   beforeEach(() => {
-    onChangePropSpy = jest.fn().mockName('onChange');
+    setHeaderSpy = jest.fn().mockName('setHeader');
     defaultProps = {
-      actions: {},
-      onChange: onChangePropSpy,
+      actions: {
+        setHeader: setHeaderSpy,
+      },
+      header: 'Some header',
     };
-    wrapper = shallow(<HomeContainer {...defaultProps} />);
+    wrapper = shallow(<HomeWrapper {...defaultProps} />);
   });
 
   test('should render component', () => {
@@ -22,14 +23,3 @@ describe('<HomeContainer />', () => {
   });
 });
 
-// describe('<HomeContainer />', () => {
-//   let wrapper;
-
-//   beforeEach(() => {
-//     wrapper = shallow(<HomeComponent />);
-//   });
-
-//   test('should render component', () => {
-//     expect(wrapper.exists()).toBe(true);
-//   });
-// });

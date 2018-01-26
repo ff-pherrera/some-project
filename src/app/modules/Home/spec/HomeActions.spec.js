@@ -10,19 +10,19 @@ describe('HomeActions', () => {
       header = 'New Header';
       expectedAction = {
         type: actionTypes.SET_HEADER,
-        header
-      }
-      expect(actions.setHeader(header)).toEqual(expectedAction)
+        header,
+      };
+      expect(actions.setHeader(header)).toEqual(expectedAction);
     });
 
     test('should create an action to clear the header', () => {
       expectedAction = {
         type: actionTypes.CLEAR_HEADER,
-      }
-      expect(actions.clearHeader()).toEqual(expectedAction)
+      };
+      expect(actions.clearHeader()).toEqual(expectedAction);
     });
   });
-  describe('Async actions', () => {
+  describe('async actions', () => {
     // Set tests in here for async actions, using redux-thunk
   });
 });

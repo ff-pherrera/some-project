@@ -22,14 +22,14 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(homeActions, dispatch),
 });
 
-export const HomeContainer = props => (
+export const HomeWrapper = props => (
   <HomeComponent
     header={props.header}
     onChange={props.actions.setHeader}
   />
 );
 
-HomeContainer.defaultProps = defaultProps;
-HomeContainer.propTypes = propTypes;
+HomeWrapper.defaultProps = defaultProps;
+HomeWrapper.propTypes = propTypes;
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeWrapper);

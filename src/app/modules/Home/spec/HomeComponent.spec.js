@@ -31,5 +31,4 @@ describe('<HomeComponent />', () => {
     // expect(wrapper.find('CustomInput').prop('onChange'))
     //   .toBe(expect.any(Function));
   });
-
 });

@@ -1,5 +1,5 @@
-import reducer from '../HomeReducer';
-import * as actionTypes from '../HomeActionTypes';
+import reducer from '../LoginReducer';
+import * as actionTypes from '../LoginActionTypes';
 
 describe('HomeReducer', () => {
   const initialState = {

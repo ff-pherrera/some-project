@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => ({
 export const HomeWrapper = props => (
   <HomeComponent
     header={props.header}
-    onChange={props.actions.setHeader}
+    onChange={(name, value) => props.actions.setHeader(value)}
   />
 );
 

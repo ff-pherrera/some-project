@@ -14,6 +14,7 @@ const propTypes = {
 const HomeComponent = props => (
   <React.Fragment>
     <CustomInput
+      name=""
       value={props.header}
       onChange={props.onChange}
     />

@@ -1,19 +1,10 @@
 import { SET_HEADER, CLEAR_HEADER } from './HomeActionTypes';
 
-const setHeaderAction = header => ({
+export const setHeader = header => ({
   type: SET_HEADER,
   header,
 });
 
-const clearHeaderAction = () => ({
+export const clearHeader = () => ({
   type: CLEAR_HEADER,
-  header: '',
 });
-
-export const setHeader = header => (
-  dispatch => dispatch(setHeaderAction(header))
-);
-
-export const clearHeader = () => (
-  dispatch => dispatch(clearHeaderAction())
-);

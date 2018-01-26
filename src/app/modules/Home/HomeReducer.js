@@ -1,7 +1,7 @@
 import { SET_HEADER, CLEAR_HEADER } from './HomeActionTypes';
 
 const initialState = {
-  header: 'Initial header YAY!',
+  header: '',
 };
 
 const HomeReducer = (state = initialState, action) => {
@@ -14,7 +14,7 @@ const HomeReducer = (state = initialState, action) => {
   case CLEAR_HEADER:
     return {
       ...state,
-      header: action.header,
+      header: '',
     };
   default:
     return state;

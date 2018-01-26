@@ -2,35 +2,32 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import HomeComponent from '../HomeComponent';
 
-describe('< HomeComponent />', () => {
+describe('<HomeComponent />', () => {
   let wrapper;
+  let defaultProps;
+  const headerProp = 'testPropValue';
+  let onChangePropSpy;
 
   beforeEach(() => {
-    wrapper = shallow(<HomeComponent header="test" onChange={jest.fn()}/>);
+    onChangePropSpy = jest.fn().mockName('onChange');
+    defaultProps = {
+      header: headerProp,
+      onChange: onChangePropSpy,
+    };
+    wrapper = shallow(<HomeComponent {...defaultProps} />);
   });
+
   test('should render component', () => {
     expect(wrapper.exists()).toBe(true);
   });
-  test('Should render header text', () => {
-    const header = wrapper.find('h1');
 
-    expect(header.text()).toBe('test');
+  test('should render header text', () => {
+    expect(wrapper.find('h1').text()).toBe(headerProp);
   });
 
-  // test('Should render header text', () => {
-  //   wrapper.onChange('test1');
-    
-  //   expect(header.text()).toBe('test1');
-  // });
+  test('should pass correct props to CustomInput', () => {
+    expect(wrapper.find('CustomInput').prop('value')).toBe(headerProp);
+    expect(wrapper.find('CustomInput').prop('onChange'))
+      .toEqual(expect.any(Function));
+  });
 });
-
-// test('CheckboxWithLabel changes the text after click', () => {
-//   // Render a checkbox with label in the document
-//   const checkbox = shallow(<CheckboxWithLabel labelOn="On" labelOff="Off" />);
-
-//   expect(checkbox.text()).toEqual('Off');
-
-//   checkbox.find('input').simulate('change');
-
-//   expect(checkbox.text()).toEqual('On');
-// });

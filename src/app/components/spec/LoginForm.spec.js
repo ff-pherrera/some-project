@@ -15,7 +15,7 @@ describe('<LoginForm />', () => {
     wrapper = shallow(<LoginForm {...defaultProps} />);
   });
 
-  test('should have correct structure', () => {
+  test('should render components', () => {
     const form = wrapper.find('form');
 
     expect(form).toHaveLength(1);
@@ -71,6 +71,9 @@ describe('<LoginForm />', () => {
 
   test('should submit information', () => {
     wrapper.find('form').simulate('submit', { preventDefault: jest.fn() });
-    expect(defaultProps.onLogin).toHaveBeenCalled();
+    expect(defaultProps.onLogin).toHaveBeenCalledWith(
+      wrapper.state('username'),
+      wrapper.state('password'),
+    );
   });
 });

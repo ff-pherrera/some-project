@@ -5,22 +5,16 @@ import CustomInput from '../CustomInput';
 describe('<CustomInput />', () => {
   let wrapper;
   let defaultProps;
-  const nameProp = 'name';
-  const valueProp = 'value';
-  const classNameProp = 'className';
-  const placeHolderProp = 'placeHolder';
-  const disabledProp = false;
-  let onChangePropSpy;
+  const testValue = 'test';
 
   beforeEach(() => {
-    onChangePropSpy = jest.fn().mockName('onChange');
     defaultProps = {
-      name: nameProp,
-      value: valueProp,
-      className: classNameProp,
-      placeHolder: placeHolderProp,
-      disabled: disabledProp,
-      onChange: onChangePropSpy,
+      name: 'name',
+      value: 'value',
+      className: '',
+      placeHolder: '',
+      disabled: false,
+      onChange: jest.fn().mockName('onChange'),
     };
     wrapper = shallow(<CustomInput {...defaultProps} />);
   });
@@ -29,21 +23,21 @@ describe('<CustomInput />', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  // TODO: Add test to manage default props
-  // test('should initialize with defaultProps', () => {});
-
-  test('should pass correct props to input', () => {
-    expect(wrapper.find('input').prop('name')).toBe(nameProp);
-    expect(wrapper.find('input').prop('value')).toBe(valueProp);
-    expect(wrapper.find('input').prop('className')).toBe(classNameProp);
-    expect(wrapper.find('input').prop('placeholder')).toBe(placeHolderProp);
-    expect(wrapper.find('input').prop('disabled')).toBe(disabledProp);
+  test('should validate props', () => {
+    expect(wrapper.find('input').prop('name')).toBe(defaultProps.name);
+    expect(wrapper.find('input').prop('value')).toBe(defaultProps.value);
+    expect(wrapper.find('input').prop('disabled')).toBe(defaultProps.disabled);
+    expect(wrapper.find('input').prop('className'))
+      .toBe(defaultProps.className);
+    expect(wrapper.find('input').prop('placeholder'))
+      .toBe(defaultProps.placeHolder);
     expect(wrapper.find('input').prop('onChange'))
       .toEqual(expect.any(Function));
   });
 
-  test('should call onChange prop from input', () => {
-    wrapper.find('input').simulate('change', { target: { value: `${valueProp}1` } });
-    expect(onChangePropSpy).toHaveBeenCalledWith(nameProp, `${valueProp}1`);
+  test('should call onChange prop on changes', () => {
+    wrapper.find('input').simulate('change', { target: { value: testValue } });
+    expect(defaultProps.onChange)
+      .toHaveBeenCalledWith(defaultProps.name, testValue);
   });
 });

@@ -5,20 +5,12 @@ import LoginForm from '../LoginForm';
 describe('<LoginForm />', () => {
   let wrapper;
   let defaultProps;
-  let onLoginProp;
-  let isLoggingInProp;
-  let testValue;
-
-  beforeAll(() => {
-    isLoggingInProp = false;
-    testValue = 'test';
-  });
+  const testValue = 'test';
 
   beforeEach(() => {
-    onLoginProp = jest.fn().mockName('onSubmit');
     defaultProps = {
-      onLogin: onLoginProp,
-      isLoggingIn: isLoggingInProp,
+      onLogin: jest.fn().mockName('onSubmit'),
+      isLoggingIn: false,
     };
     wrapper = shallow(<LoginForm {...defaultProps} />);
   });
@@ -31,63 +23,54 @@ describe('<LoginForm />', () => {
     expect(form.find('SubmitButton')).toHaveLength(1);
   });
 
-  test('should have username input configured correctly', () => {
-    const usernameInput = wrapper.find('form')
-      .find('CustomInput').find('[name="username"]');
+  test('should validate props for username CustomInput', () => {
+    const usernameInput = wrapper.find('form').find('CustomInput')
+      .find('[name="username"]');
 
-    expect(usernameInput.exists()).toBe(true);
     expect(usernameInput.prop('name')).toBe('username');
-    expect(usernameInput.prop('disabled')).toBe(isLoggingInProp);
+    expect(usernameInput.prop('disabled')).toBe(defaultProps.isLoggingIn);
     expect(usernameInput.prop('placeHolder')).toBe('Username');
     expect(usernameInput.prop('value')).toBe(wrapper.state('username'));
     expect(usernameInput.prop('onChange')).toEqual(expect.any(Function));
   });
 
-  test('should have password input configured correctly', () => {
-    const usernameInput = wrapper.find('form')
-      .find('CustomInput').find('[name="password"]');
+  test('should validate props for password CustomInput', () => {
+    const usernameInput = wrapper.find('form').find('CustomInput')
+      .find('[name="password"]');
 
-    expect(usernameInput.exists()).toBe(true);
     expect(usernameInput.prop('name')).toBe('password');
-    expect(usernameInput.prop('disabled')).toBe(isLoggingInProp);
+    expect(usernameInput.prop('disabled')).toBe(defaultProps.isLoggingIn);
     expect(usernameInput.prop('placeHolder')).toBe('Password');
     expect(usernameInput.prop('value')).toBe(wrapper.state('password'));
     expect(usernameInput.prop('onChange')).toEqual(expect.any(Function));
   });
 
-  test('should have submit button configured correctly', () => {
+  test('validate props for SubmitButton', () => {
     const submitButton = wrapper.find('form').find('SubmitButton');
 
-    expect(submitButton.exists()).toBe(true);
-    expect(submitButton.prop('submitting')).toBe(isLoggingInProp);
+    expect(submitButton.prop('submitting')).toBe(defaultProps.isLoggingIn);
   });
 
-  test('should update username correctly', () => {
+  test('should update username', () => {
     const usernameInput = wrapper.find('form')
-      .find('CustomInput').find('[name="username"]');
+      .find('CustomInput[name="username"]');
+    const onChange = usernameInput.prop('onChange');
 
-    usernameInput.prop('onChange')('username', testValue);
+    onChange('username', testValue);
     expect(wrapper.state('username')).toBe(testValue);
-    // TODO: Revalidate child?
-    // wrapper.instance().forceUpdate();
-    // wrapper.update();
-    // expect(usernameInput.prop('value')).toBe(value);
   });
 
-  test('should update password correctly', () => {
+  test('should update password', () => {
     const passwordInput = wrapper.find('form')
       .find('CustomInput').find('[name="password"]');
+    const onChange = passwordInput.prop('onChange');
 
-    passwordInput.prop('onChange')('password', testValue);
+    onChange('password', testValue);
     expect(wrapper.state('password')).toBe(testValue);
-    // TODO: Revalidate child?
-    // wrapper.instance().forceUpdate();
-    // wrapper.update();
-    // expect(passwordInput.prop('value')).toBe(value);
   });
 
-  test('should submit information on submitting form', () => {
+  test('should submit information', () => {
     wrapper.find('form').simulate('submit', { preventDefault: jest.fn() });
-    expect(onLoginProp).toHaveBeenCalled();
+    expect(defaultProps.onLogin).toHaveBeenCalled();
   });
 });

@@ -37,5 +37,13 @@ describe('<Dummy tests/>', () => {
       // All calls and the name of the mock is written as a snapshot
       // expect(mockFn).toMatchSnapshot();
     });
+    test('', () => {
+      // To update state and get rendered children
+      // wrapper.update();
+      // usernameInput = wrapper.find('form')
+      //   .find('CustomInput[name="username"]');
+
+      // expect(usernameInput.prop('value')).toBe(testValue);
+    });
   });
 });

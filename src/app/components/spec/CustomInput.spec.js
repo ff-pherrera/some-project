@@ -9,7 +9,7 @@ describe('<CustomInput />', () => {
   const valueProp = 'value';
   const classNameProp = 'className';
   const placeHolderProp = 'placeHolder';
-  const disabledProp = true;
+  const disabledProp = false;
   let onChangePropSpy;
 
   beforeEach(() => {

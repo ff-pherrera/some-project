@@ -7,12 +7,15 @@ describe('<HomeComponent />', () => {
   let defaultProps;
   const headerProp = 'testPropValue';
   let onChangePropSpy;
+  let onLogoutPropSpy;
 
   beforeEach(() => {
     onChangePropSpy = jest.fn().mockName('onChange');
+    onLogoutPropSpy = jest.fn().mockName('onLogout');
     defaultProps = {
       header: headerProp,
       onChange: onChangePropSpy,
+      onLogout: onLogoutPropSpy,
     };
     wrapper = shallow(<HomeComponent {...defaultProps} />);
   });

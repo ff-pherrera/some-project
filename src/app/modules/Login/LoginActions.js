@@ -17,7 +17,6 @@ export const logIn = (username, password) => (
       })
       .catch(() => {
         dispatch(setLoggingIn(false));
-        routingService.goToHome();
       });
   }
 );

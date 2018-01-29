@@ -7,7 +7,7 @@ export default {
         } else {
           reject(new Error({ description: 'Invalid credentials' }));
         }
-      }, 10000);
+      }, 4000);
     });
   },
 };

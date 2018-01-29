@@ -7,6 +7,9 @@ describe('<CustomInput/>', () => {
   let defaultProps;
   const nameProp = 'name';
   const valueProp = 'value';
+  const classNameProp = 'className';
+  const placeHolderProp = 'placeHolder';
+  const disabledProp = true;
   let onChangePropSpy;
 
   beforeEach(() => {
@@ -14,6 +17,9 @@ describe('<CustomInput/>', () => {
     defaultProps = {
       name: nameProp,
       value: valueProp,
+      className: classNameProp,
+      placeHolder: placeHolderProp,
+      disabled: disabledProp,
       onChange: onChangePropSpy,
     };
     wrapper = shallow(<CustomInput {...defaultProps} />);
@@ -23,17 +29,21 @@ describe('<CustomInput/>', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
+  // TODO: Add test to manage default props
+  // test('should initialize with defaultProps', () => {});
+
   test('should pass correct props to input', () => {
     expect(wrapper.find('input').prop('name')).toBe(nameProp);
     expect(wrapper.find('input').prop('value')).toBe(valueProp);
+    expect(wrapper.find('input').prop('className')).toBe(classNameProp);
+    expect(wrapper.find('input').prop('placeholder')).toBe(placeHolderProp);
+    expect(wrapper.find('input').prop('disabled')).toBe(disabledProp);
     expect(wrapper.find('input').prop('onChange'))
       .toEqual(expect.any(Function));
   });
 
-  // test('should call onChange prop from input', () => {
-  //   expect(wrapper.find('input').prop('onChange'))
-  //     .toEqual(expect.any(Function));
-  //   wrapper.find('input').simulate('change', { target: { value: valueProp } });
-  //   expect(onChangePropSpy).toHaveBeenCalledWith(nameProp, valueProp);
-  // });
+  test('should call onChange prop from input', () => {
+    wrapper.find('input').simulate('change', { target: { value: `${valueProp}1` } });
+    expect(onChangePropSpy).toHaveBeenCalledWith(nameProp, `${valueProp}1`);
+  });
 });

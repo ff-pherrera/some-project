@@ -26,7 +26,7 @@ export const HomeWrapper = props => (
   <HomeComponent
     header={props.header}
     onChange={(name, value) => props.actions.setHeader(value)}
-    onLogout={props.actions.logOut}
+    onLogout={props.actions.logout}
   />
 );
 

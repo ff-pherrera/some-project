@@ -14,7 +14,7 @@ describe('<HomeContainer />', () => {
     defaultProps = {
       actions: {
         setHeader: setHeaderSpy,
-        logOut: onLogoutSpy,
+        logout: onLogoutSpy,
       },
       header: 'Some header',
     };

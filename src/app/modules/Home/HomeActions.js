@@ -10,7 +10,7 @@ export const clearHeader = () => ({
   type: CLEAR_HEADER,
 });
 
-export const logOut = () => (
+export const logout = () => (
   () => {
     routingService.goToLogin();
   }

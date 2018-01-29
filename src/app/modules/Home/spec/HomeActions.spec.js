@@ -2,16 +2,16 @@ import * as actions from '../HomeActions';
 import * as actionTypes from '../HomeActionTypes';
 
 describe('HomeActions', () => {
-  let header;
+  let value;
   let expectedAction;
 
   test('should create an action to set the header', () => {
-    header = 'header';
+    value = 'value';
     expectedAction = {
       type: actionTypes.SET_HEADER,
-      header,
+      value,
     };
-    expect(actions.setHeader(header)).toEqual(expectedAction);
+    expect(actions.setHeader(value)).toEqual(expectedAction);
   });
 
   test('should create an action to clear the header', () => {

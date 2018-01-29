@@ -4,7 +4,7 @@ const initialState = {
   isLoggingIn: false,
 };
 
-const HomeReducer = (state = initialState, action) => {
+const LoginReducer = (state = initialState, action) => {
   switch (action.type) {
   case actionTypes.SET_IS_LOGGING_IN:
     return {
@@ -16,4 +16,4 @@ const HomeReducer = (state = initialState, action) => {
   }
 };
 
-export default HomeReducer;
+export default LoginReducer;

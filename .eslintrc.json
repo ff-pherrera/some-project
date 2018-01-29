@@ -79,9 +79,11 @@
   },
   "globals": {
     "describe": true,
+    "beforeAll": true,
     "beforeEach": true,
     "expect": true,
     "afterEach": true,
+    "afterAll": true,
     "jest": true,
     "test": true
   }

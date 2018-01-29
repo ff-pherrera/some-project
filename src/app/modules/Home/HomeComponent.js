@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import T from 'prop-types';
-import CustomInput from '../../components/CustomInput/CustomInput';
-import Button from '../../components/Button/Button';
+import CustomInput from '../../components/CustomInput';
+import Button from '../../components/Button';
 
 const defaultProps = {
   header: '',
@@ -14,7 +14,7 @@ const propTypes = {
 };
 
 const HomeComponent = props => (
-  <React.Fragment>
+  <Fragment>
     <CustomInput
       name=""
       value={props.header}
@@ -25,7 +25,7 @@ const HomeComponent = props => (
       label="Logout"
       onClick={props.onLogout}
     />
-  </React.Fragment>
+  </Fragment>
 );
 
 HomeComponent.defaultProps = defaultProps;

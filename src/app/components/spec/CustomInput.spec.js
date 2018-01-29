@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CustomInput from '../CustomInput';
 
-describe('<CustomInput/>', () => {
+describe('<CustomInput />', () => {
   let wrapper;
   let defaultProps;
   const nameProp = 'name';

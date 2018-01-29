@@ -1,6 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
-import LoginForm from '../../components/LoginForm/LoginForm';
+import LoginForm from '../../components/LoginForm';
 
 const defaultProps = {
   isLoggingIn: false,

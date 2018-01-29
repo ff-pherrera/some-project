@@ -1,3 +1,4 @@
+import routingService from '../../services/routingService';
 import { SET_HEADER, CLEAR_HEADER } from './HomeActionTypes';
 
 export const setHeader = header => ({
@@ -8,3 +9,9 @@ export const setHeader = header => ({
 export const clearHeader = () => ({
   type: CLEAR_HEADER,
 });
+
+export const logOut = () => (
+  () => {
+    routingService.goToLogin();
+  }
+);

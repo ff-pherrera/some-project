@@ -28,7 +28,7 @@ describe('<HomeComponent />', () => {
     expect(wrapper.find('h1').text()).toBe(headerProp);
   });
 
-  test('should pass correct props to CustomInput', () => {
+  test('should pass props to CustomInput', () => {
     expect(wrapper.find('CustomInput').prop('value')).toBe(headerProp);
     expect(wrapper.find('CustomInput').prop('onChange'))
       .toEqual(expect.any(Function));

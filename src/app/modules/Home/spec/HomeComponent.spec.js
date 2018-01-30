@@ -6,16 +6,12 @@ describe('<HomeComponent />', () => {
   let wrapper;
   let defaultProps;
   const headerProp = 'testPropValue';
-  let onChangePropSpy;
-  let onLogoutPropSpy;
 
   beforeEach(() => {
-    onChangePropSpy = jest.fn().mockName('onChange');
-    onLogoutPropSpy = jest.fn().mockName('onLogout');
     defaultProps = {
       header: headerProp,
-      onChange: onChangePropSpy,
-      onLogout: onLogoutPropSpy,
+      onChange: jest.fn().mockName('onChange'),
+      onLogout: jest.fn().mockName('onLogout'),
     };
     wrapper = shallow(<HomeComponent {...defaultProps} />);
   });
@@ -31,6 +27,6 @@ describe('<HomeComponent />', () => {
   test('should pass props to CustomInput', () => {
     expect(wrapper.find('CustomInput').prop('value')).toBe(headerProp);
     expect(wrapper.find('CustomInput').prop('onChange'))
-      .toEqual(expect.any(Function));
+      .toBe(defaultProps.onChange);
   });
 });

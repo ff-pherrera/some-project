@@ -5,7 +5,7 @@ import CustomInput from '../CustomInput';
 describe('<CustomInput />', () => {
   let wrapper;
   let defaultProps;
-  const testValue = 'test';
+  const testValue = 'foo';
 
   beforeEach(() => {
     defaultProps = {

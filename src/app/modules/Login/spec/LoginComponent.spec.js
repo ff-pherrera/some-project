@@ -11,24 +11,38 @@ describe('<LoginComponent />', () => {
       isLoggingIn: false,
       onLogin: jest.fn().mockName('onLogin'),
     };
-    wrapper = shallow(<LoginComponent {...defaultProps} />);
   });
 
-  describe('<LoginForm />', () => {
-    test('LoginForm should render with no children', () => {
-      const loginForm = wrapper.find('LoginForm');
-
-      expect(loginForm.exists()).toBe(true);
-      expect(loginForm.children().length).toBe(0);
+  describe('Default props provided', () => {
+    beforeEach(() => {
+      wrapper = shallow(<LoginComponent {...defaultProps} />);
     });
 
-    test('LoginForm should have correct props passed', () => {
-      const loginForm = wrapper.find('LoginForm');
+    describe('<LoginForm />', () => {
+      test('LoginForm should render with no children', () => {
+        expect(wrapper.exists()).toBe(true);
+        expect(wrapper.children().length).toBe(0);
+      });
 
-      expect(wrapper.prop('isLoggingIn')).toEqual(expect.any(Boolean));
-      expect(loginForm.prop('isLoggingIn')).toBe(defaultProps.isLoggingIn);
-      expect(wrapper.prop('onLogin')).toEqual(expect.any(Function));
-      expect(loginForm.prop('onLogin')).toBe(defaultProps.onLogin);
+      test('LoginForm should have correct props passed', () => {
+        expect(wrapper.prop('isLoggingIn')).toEqual(expect.any(Boolean));
+        expect(wrapper.prop('isLoggingIn')).toBe(defaultProps.isLoggingIn);
+        expect(wrapper.prop('onLogin')).toEqual(expect.any(Function));
+        expect(wrapper.prop('onLogin')).toBe(defaultProps.onLogin);
+      });
+    });
+  });
+
+  describe('No default props provided', () => {
+    beforeEach(() => {
+      defaultProps.isLoggingIn = undefined;
+      wrapper = shallow(<LoginComponent {...defaultProps} />);
+    });
+
+    describe('<LoginForm />', () => {
+      test('isLoggingIn should be false', () => {
+        expect(wrapper.prop('isLoggingIn')).toBe(false);
+      });
     });
   });
 });

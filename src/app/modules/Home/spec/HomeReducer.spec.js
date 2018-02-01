@@ -5,7 +5,7 @@ describe('HomeReducer', () => {
   const initialState = {
     header: '',
   };
-  const testValue = 'test';
+  const testValue = 'foo';
 
   test('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState);

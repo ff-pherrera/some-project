@@ -12,7 +12,10 @@ const propTypes = {
 };
 
 const SubmitButton = props => (
-  <button type="submit">
+  <button
+    type="submit"
+    disabled={props.submitting}
+  >
     {props.label}
     {props.submitting ? ' - Loading' : ''}
   </button>

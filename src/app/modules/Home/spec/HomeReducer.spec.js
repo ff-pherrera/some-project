@@ -5,7 +5,7 @@ describe('HomeReducer', () => {
   const initialState = {
     header: '',
   };
-  const testValue = 'foo';
+  const foo = 'foo';
 
   test('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState);
@@ -14,8 +14,8 @@ describe('HomeReducer', () => {
   test('should handle header change', () => {
     expect(reducer(initialState, {
       type: actionTypes.SET_HEADER,
-      value: testValue,
-    })).toEqual({ header: testValue });
+      value: foo,
+    })).toEqual({ header: foo });
   });
 
   test('should handle header clearing', () => {

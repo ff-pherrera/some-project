@@ -5,7 +5,7 @@ import CustomInput from '../CustomInput';
 describe('<CustomInput />', () => {
   let wrapper;
   let defaultProps;
-  const testValue = 'foo';
+  const foo = 'foo';
 
   beforeEach(() => {
     defaultProps = {
@@ -36,8 +36,8 @@ describe('<CustomInput />', () => {
   });
 
   test('should call onChange prop on changes', () => {
-    wrapper.find('input').simulate('change', { target: { value: testValue } });
+    wrapper.find('input').simulate('change', { target: { value: foo } });
     expect(defaultProps.onChange)
-      .toHaveBeenCalledWith(defaultProps.name, testValue);
+      .toHaveBeenCalledWith(defaultProps.name, foo);
   });
 });

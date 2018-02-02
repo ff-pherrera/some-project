@@ -43,7 +43,7 @@ describe('<Dummy tests/>', () => {
       // usernameInput = wrapper.find('form')
       //   .find('CustomInput[name="username"]');
 
-      // expect(usernameInput.prop('value')).toBe(testValue);
+      // expect(usernameInput.prop('value')).toBe(foo);
     });
   });
 });

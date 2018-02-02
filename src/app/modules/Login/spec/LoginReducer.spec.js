@@ -5,7 +5,7 @@ describe('LoginReducer', () => {
   const initialState = {
     isLoggingIn: false,
   };
-  const testValue = true;
+  const foo = true;
 
   test('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState);
@@ -14,7 +14,7 @@ describe('LoginReducer', () => {
   test('should handle isLoggingIn change', () => {
     expect(reducer(initialState, {
       type: actionTypes.SET_IS_LOGGING_IN,
-      value: testValue,
-    })).toEqual({ isLoggingIn: testValue });
+      value: foo,
+    })).toEqual({ isLoggingIn: foo });
   });
 });

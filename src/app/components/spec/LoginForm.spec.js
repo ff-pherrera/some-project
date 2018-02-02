@@ -5,7 +5,7 @@ import LoginForm from '../LoginForm';
 describe('<LoginForm />', () => {
   let wrapper;
   let defaultProps;
-  const testValue = 'foo';
+  const foo = 'foo';
 
   beforeEach(() => {
     defaultProps = {
@@ -84,8 +84,8 @@ describe('<LoginForm />', () => {
         .find('CustomInput[name="username"]');
       const onChange = usernameInput.prop('onChange');
 
-      onChange('username', testValue);
-      expect(wrapper.state('username')).toBe(testValue);
+      onChange('username', foo);
+      expect(wrapper.state('username')).toBe(foo);
     });
 
     test('should update password', () => {
@@ -93,8 +93,8 @@ describe('<LoginForm />', () => {
         .find('CustomInput').find('[name="password"]');
       const onChange = passwordInput.prop('onChange');
 
-      onChange('password', testValue);
-      expect(wrapper.state('password')).toBe(testValue);
+      onChange('password', foo);
+      expect(wrapper.state('password')).toBe(foo);
     });
 
     test('should submit information', () => {

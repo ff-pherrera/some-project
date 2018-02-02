@@ -27,27 +27,13 @@ describe('<LoginForm />', () => {
         expect(wrapper.children()).toHaveLength(3);
       });
 
-      test('should update username', () => {
-        const input = wrapper.find('CustomInput[name="username"]');
-
-        input.simulate('change', 'username', foo);
-        expect(onFieldChangedSpy).toHaveBeenCalledWith('username', foo);
-      });
-
-      test('should update password', () => {
-        const input = wrapper.find('CustomInput[name="password"]');
-
-        input.simulate('change', 'password', foo);
-        expect(onFieldChangedSpy).toHaveBeenCalledWith('password', foo);
-      });
-
       test('onFieldChanged should update state', () => {
         const user = wrapper.find('CustomInput[name="username"]');
         const password = wrapper.find('CustomInput[name="username"]');
 
         user.simulate('change', 'username', foo);
-        password.simulate('change', 'password', foo);
         expect(wrapper.state('username')).toBe(foo);
+        password.simulate('change', 'password', foo);
         expect(wrapper.state('password')).toBe(foo);
       });
 
@@ -81,6 +67,13 @@ describe('<LoginForm />', () => {
         expect(input.prop('value')).toBe(wrapper.state('username'));
         expect(input.prop('onChange')).toEqual(expect.any(Function));
       });
+
+      test('should update username', () => {
+        const input = wrapper.find('CustomInput[name="username"]');
+
+        input.simulate('change', 'username', foo);
+        expect(onFieldChangedSpy).toHaveBeenCalledWith('username', foo);
+      });
     });
 
     describe('password <CustomInput />', () => {
@@ -89,6 +82,13 @@ describe('<LoginForm />', () => {
 
         expect(input.exists()).toBe(true);
         expect(input.children()).toHaveLength(0);
+      });
+
+      test('should update password', () => {
+        const input = wrapper.find('CustomInput[name="password"]');
+
+        input.simulate('change', 'password', foo);
+        expect(onFieldChangedSpy).toHaveBeenCalledWith('password', foo);
       });
 
       test('should have correct props passed', () => {

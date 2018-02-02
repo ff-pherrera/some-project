@@ -16,7 +16,7 @@ describe('<LoginForm />', () => {
     onFieldChangedSpy = jest.spyOn(LoginForm.prototype, 'onFieldChanged');
   });
 
-  describe('Default props provided', () => {
+  describe('default props provided', () => {
     beforeEach(() => {
       wrapper = shallow(<LoginForm {...defaultProps} />);
     });
@@ -49,7 +49,7 @@ describe('<LoginForm />', () => {
       });
     });
 
-    describe('username <CustomInput />', () => {
+    describe('<CustomInput /> (username)', () => {
       test('should render with no children', () => {
         const input = wrapper.find('CustomInput[name="username"]');
 
@@ -76,7 +76,7 @@ describe('<LoginForm />', () => {
       });
     });
 
-    describe('password <CustomInput />', () => {
+    describe('<CustomInput /> (password)', () => {
       test('should render with no children', () => {
         const input = wrapper.find('CustomInput[name="password"]');
 
@@ -120,7 +120,7 @@ describe('<LoginForm />', () => {
     });
   });
 
-  describe('No default props provided', () => {
+  describe('no default props provided', () => {
     beforeEach(() => {
       defaultProps.isLoggingIn = undefined;
       wrapper = shallow(<LoginForm {...defaultProps} />);
@@ -132,7 +132,7 @@ describe('<LoginForm />', () => {
       });
     });
 
-    describe('username <CustomInput />', () => {
+    describe('<CustomInput /> (username)', () => {
       test('isLoggingIn should be default value', () => {
         const instance = wrapper.instance().props;
 
@@ -141,7 +141,7 @@ describe('<LoginForm />', () => {
       });
     });
 
-    describe('password <CustomInput />', () => {
+    describe('<CustomInput /> (password)', () => {
       test('isLoggingIn should be default value', () => {
         const instance = wrapper.instance().props;
 

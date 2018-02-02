@@ -11,19 +11,40 @@ describe('<Button />', () => {
       label: 'Button',
       onClick: jest.fn().mockName('onClick'),
     };
-    wrapper = shallow(<Button {...defaultProps} />);
   });
 
-  test('should render component', () => {
-    expect(wrapper.exists()).toBe(true);
+  describe('default props provided', () => {
+    beforeEach(() => {
+      wrapper = shallow(<Button {...defaultProps} />);
+    });
+
+    describe('<button />', () => {
+      test('should render with label as children', () => {
+        expect(wrapper.exists()).toBe(true);
+        expect(wrapper.children()).toHaveLength(1);
+      });
+
+      test('should display label', () => {
+        expect(wrapper.text()).toBe(defaultProps.label);
+      });
+
+      test('should call onClick prop on click', () => {
+        wrapper.simulate('click');
+        expect(defaultProps.onClick).toHaveBeenCalled();
+      });
+    });
   });
 
-  test('should display label', () => {
-    expect(wrapper.text()).toBe(defaultProps.label);
-  });
+  describe('no default props provided', () => {
+    beforeEach(() => {
+      defaultProps.label = undefined;
+      wrapper = shallow(<Button {...defaultProps} />);
+    });
 
-  test('should call onClick prop on click', () => {
-    wrapper.find('button').simulate('click');
-    expect(defaultProps.onClick).toHaveBeenCalled();
+    describe('<button />', () => {
+      test('should display "Button" as label', () => {
+        expect(wrapper.text()).toBe('Button');
+      });
+    });
   });
 });

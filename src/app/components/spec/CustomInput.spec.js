@@ -16,28 +16,48 @@ describe('<CustomInput />', () => {
       disabled: false,
       onChange: jest.fn().mockName('onChange'),
     };
-    wrapper = shallow(<CustomInput {...defaultProps} />);
   });
 
-  test('should render component', () => {
-    expect(wrapper.exists()).toBe(true);
+  describe('default props provided', () => {
+    beforeEach(() => {
+      wrapper = shallow(<CustomInput {...defaultProps} />);
+    });
+
+    describe('<input />', () => {
+      test('should render component', () => {
+        expect(wrapper.exists()).toBe(true);
+      });
+
+      test('should have correct props passed', () => {
+        expect(wrapper.prop('name')).toBe(defaultProps.name);
+        expect(wrapper.prop('value')).toBe(defaultProps.value);
+        expect(wrapper.prop('disabled')).toBe(defaultProps.disabled);
+        expect(wrapper.prop('className')).toBe(defaultProps.className);
+        expect(wrapper.prop('placeholder')).toBe(defaultProps.placeHolder);
+        expect(wrapper.prop('onChange')).toEqual(expect.any(Function));
+      });
+
+      test('should call onChange prop on changes', () => {
+        wrapper.simulate('change', { target: { value: foo } });
+        expect(defaultProps.onChange).toBeCalledWith(defaultProps.name, foo);
+      });
+    });
   });
 
-  test('should validate props', () => {
-    expect(wrapper.find('input').prop('name')).toBe(defaultProps.name);
-    expect(wrapper.find('input').prop('value')).toBe(defaultProps.value);
-    expect(wrapper.find('input').prop('disabled')).toBe(defaultProps.disabled);
-    expect(wrapper.find('input').prop('className'))
-      .toBe(defaultProps.className);
-    expect(wrapper.find('input').prop('placeholder'))
-      .toBe(defaultProps.placeHolder);
-    expect(wrapper.find('input').prop('onChange'))
-      .toEqual(expect.any(Function));
-  });
+  describe('no default props provided', () => {
+    beforeEach(() => {
+      defaultProps.className = undefined;
+      defaultProps.placeHolder = undefined;
+      defaultProps.disabled = undefined;
+      wrapper = shallow(<CustomInput {...defaultProps} />);
+    });
 
-  test('should call onChange prop on changes', () => {
-    wrapper.find('input').simulate('change', { target: { value: foo } });
-    expect(defaultProps.onChange)
-      .toHaveBeenCalledWith(defaultProps.name, foo);
+    describe('<input />', () => {
+      test('should have correct props passed', () => {
+        expect(wrapper.prop('disabled')).toBe(false);
+        expect(wrapper.prop('className')).toBe('');
+        expect(wrapper.prop('placeholder')).toBe('');
+      });
+    });
   });
 });

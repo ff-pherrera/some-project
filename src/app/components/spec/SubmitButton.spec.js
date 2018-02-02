@@ -45,7 +45,7 @@ describe('<SubmitButton />', () => {
 
     describe('<button />', () => {
       test('should have correct props passed', () => {
-        expect(wrapper.prop('submitting')).toBe(false);
+        expect(wrapper.prop('disabled')).toBe(false);
         expect(wrapper.text()).toBe('Submit');
       });
     });

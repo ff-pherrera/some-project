@@ -13,7 +13,7 @@ describe('<LoginComponent />', () => {
     };
   });
 
-  describe('Default props provided', () => {
+  describe('default props provided', () => {
     beforeEach(() => {
       wrapper = shallow(<LoginComponent {...defaultProps} />);
     });
@@ -33,16 +33,14 @@ describe('<LoginComponent />', () => {
     });
   });
 
-  describe('No default props provided', () => {
+  describe('no default props provided', () => {
     beforeEach(() => {
       defaultProps.isLoggingIn = undefined;
       wrapper = shallow(<LoginComponent {...defaultProps} />);
     });
 
-    describe('<LoginForm />', () => {
-      test('isLoggingIn should be false', () => {
-        expect(wrapper.prop('isLoggingIn')).toBe(false);
-      });
+    test('isLoggingIn should be false', () => {
+      expect(wrapper.prop('isLoggingIn')).toBe(false);
     });
   });
 });

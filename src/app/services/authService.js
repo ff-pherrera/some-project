@@ -1,5 +1,5 @@
 export default {
-  attemptLogIn(username, password) {
+  attemptLogin(username, password) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (username === 'test' && password === 'test') {

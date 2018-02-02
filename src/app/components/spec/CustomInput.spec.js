@@ -24,7 +24,7 @@ describe('<CustomInput />', () => {
     });
 
     describe('<input />', () => {
-      test('should render component', () => {
+      test('should render', () => {
         expect(wrapper.exists()).toBe(true);
       });
 

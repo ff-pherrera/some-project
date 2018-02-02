@@ -19,7 +19,7 @@ describe('<LoginComponent />', () => {
     });
 
     describe('<LoginForm />', () => {
-      test('LoginForm should render with no children', () => {
+      test('should render with no children', () => {
         expect(wrapper.exists()).toBe(true);
         expect(wrapper.children().length).toBe(0);
       });

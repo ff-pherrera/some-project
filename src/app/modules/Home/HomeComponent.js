@@ -9,7 +9,7 @@ const defaultProps = {
 
 const propTypes = {
   header: T.string,
-  onChange: T.func.isRequired,
+  onHeaderChange: T.func.isRequired,
   onLogout: T.func.isRequired,
 };
 
@@ -18,7 +18,7 @@ const HomeComponent = props => (
     <CustomInput
       name=""
       value={props.header}
-      onChange={props.onChange}
+      onChange={props.onHeaderChange}
     />
     <h1>{props.header}</h1>
     <Button

@@ -10,13 +10,13 @@ describe('<HomeComponent />', () => {
   beforeEach(() => {
     defaultProps = {
       header: headerProp,
-      onChange: jest.fn().mockName('onChange'),
+      onHeaderChange: jest.fn().mockName('onHeaderChange'),
       onLogout: jest.fn().mockName('onLogout'),
     };
     wrapper = shallow(<HomeComponent {...defaultProps} />);
   });
 
-  test('should render component', () => {
+  test('should render', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
@@ -27,6 +27,6 @@ describe('<HomeComponent />', () => {
   test('should pass props to CustomInput', () => {
     expect(wrapper.find('CustomInput').prop('value')).toBe(headerProp);
     expect(wrapper.find('CustomInput').prop('onChange'))
-      .toBe(defaultProps.onChange);
+      .toBe(defaultProps.onHeaderChange);
   });
 });

@@ -5,6 +5,7 @@ import LoginForm from '../LoginForm';
 describe('<LoginForm />', () => {
   let wrapper;
   let defaultProps;
+  let onFieldChangedSpy;
   const foo = 'foo';
 
   beforeEach(() => {
@@ -12,6 +13,7 @@ describe('<LoginForm />', () => {
       isLoggingIn: false,
       onLogin: jest.fn().mockName('onSubmit'),
     };
+    onFieldChangedSpy = jest.spyOn(LoginForm.prototype, 'onFieldChanged');
   });
 
   describe('Default props provided', () => {
@@ -19,143 +21,101 @@ describe('<LoginForm />', () => {
       wrapper = shallow(<LoginForm {...defaultProps} />);
     });
 
-    test('form should render and contain everything', () => {
-      expect(wrapper.exists()).toBe(true);
-      const input = wrapper.find('form').find('CustomInput[name="username"]');
-
-      expect(input.children().length).toBe(0);
-      // expect(form.find('CustomInput[name="username"]').exists()).toBe(true);
-      // expect(form.find('CustomInput[name="password"]').exists()).toBe(true);
-      // expect(form.find('SubmitButton').exists()).toBe(true);
-    });
-
-    test('form, Two CustomInput, SubmitButton should render', () => {
-      const form = wrapper.find('form');
-
-      expect(form.exists()).toBe(true);
-      expect(form.find('CustomInput[name="username"]').exists()).toBe(true);
-      expect(form.find('CustomInput[name="password"]').exists()).toBe(true);
-      expect(form.find('SubmitButton').exists()).toBe(true);
-    });
-
-    test('username CustomInput should have no children', () => {
-      const input = wrapper.find('form').find('CustomInput[name="username"]');
-
-      expect(input.children().length).toBe(0);
-    });
-
-    test('password CustomInput should have no children', () => {
-      const input = wrapper.find('form').find('CustomInput[name="password"]');
-
-      expect(input.children().length).toBe(0);
-    });
-
-    test('username CustomInput should have correct props passed', () => {
-      const input = wrapper.find('form').find('CustomInput[name="username"]');
-
-      expect(input.prop('name')).toBe('username');
-      expect(input.prop('disabled')).toEqual(expect.any(Boolean));
-      expect(input.prop('disabled')).toBe(defaultProps.isLoggingIn);
-      expect(input.prop('placeHolder')).toBe('Username');
-      expect(input.prop('value')).toBe(wrapper.state('username'));
-      expect(input.prop('onChange')).toEqual(expect.any(Function));
-    });
-
-    test('password CustomInput should have correct props passed', () => {
-      const input = wrapper.find('form').find('CustomInput[name="password"]');
-
-      expect(input.prop('name')).toBe('password');
-      expect(input.prop('disabled')).toEqual(expect.any(Boolean));
-      expect(input.prop('disabled')).toBe(defaultProps.isLoggingIn);
-      expect(input.prop('placeHolder')).toBe('Password');
-      expect(input.prop('value')).toBe(wrapper.state('password'));
-      expect(input.prop('onChange')).toEqual(expect.any(Function));
-    });
-
-    test('SubmitButton should have correct props passed', () => {
-      const submitButton = wrapper.find('form').find('SubmitButton');
-
-      expect(submitButton.prop('submitting')).toEqual(expect.any(Boolean));
-      expect(submitButton.prop('submitting')).toBe(defaultProps.isLoggingIn);
-    });
-
-    test('should update username', () => {
-      const usernameInput = wrapper.find('form')
-        .find('CustomInput[name="username"]');
-      const onChange = usernameInput.prop('onChange');
-
-      onChange('username', foo);
-      expect(wrapper.state('username')).toBe(foo);
-    });
-
-    test('should update password', () => {
-      const passwordInput = wrapper.find('form')
-        .find('CustomInput').find('[name="password"]');
-      const onChange = passwordInput.prop('onChange');
-
-      onChange('password', foo);
-      expect(wrapper.state('password')).toBe(foo);
-    });
-
-    test('should submit information', () => {
-      const preventDefault = jest.fn().mockName('preventDefault');
-
-      wrapper.find('form').simulate('submit', { preventDefault });
-      expect(preventDefault).toHaveBeenCalled();
-      expect(defaultProps.onLogin).toHaveBeenCalledWith(
-        wrapper.state('username'),
-        wrapper.state('password'),
-      );
-    });
-  });
-
-  describe('No default props provided', () => {
-    beforeEach(() => {
-      defaultProps.isLoggingIn = undefined;
-      wrapper = shallow(<LoginForm {...defaultProps} />);
-    });
-
-    describe('<LoginForm />', () => {
-      test('isLoggingIn should be false', () => {
-        expect(wrapper.prop('isLoggingIn')).toBe(false);
-      });
-    });
-  });
-});
-
-/*
-
-import React from 'react';
-import { shallow } from 'enzyme';
-import LoginComponent from '../LoginComponent';
-
-describe('<LoginComponent />', () => {
-  let wrapper;
-  let defaultProps;
-
-  beforeEach(() => {
-    defaultProps = {
-      isLoggingIn: false,
-      onLogin: jest.fn().mockName('onLogin'),
-    };
-  });
-
-  describe('Default props provided', () => {
-    beforeEach(() => {
-      wrapper = shallow(<LoginComponent {...defaultProps} />);
-    });
-
-    describe('<LoginForm />', () => {
-      test('LoginForm should render with no children', () => {
+    describe('<form />', () => {
+      test('should render and contain everything', () => {
         expect(wrapper.exists()).toBe(true);
-        expect(wrapper.children().length).toBe(0);
+        expect(wrapper.children()).toHaveLength(3);
       });
 
-      test('LoginForm should have correct props passed', () => {
-        expect(wrapper.prop('isLoggingIn')).toEqual(expect.any(Boolean));
-        expect(wrapper.prop('isLoggingIn')).toBe(defaultProps.isLoggingIn);
-        expect(wrapper.prop('onLogin')).toEqual(expect.any(Function));
-        expect(wrapper.prop('onLogin')).toBe(defaultProps.onLogin);
+      test('should update username', () => {
+        const input = wrapper.find('CustomInput[name="username"]');
+
+        input.simulate('change', 'username', foo);
+        expect(onFieldChangedSpy).toHaveBeenCalledWith('username', foo);
+      });
+
+      test('should update password', () => {
+        const input = wrapper.find('CustomInput[name="password"]');
+
+        input.simulate('change', 'password', foo);
+        expect(onFieldChangedSpy).toHaveBeenCalledWith('password', foo);
+      });
+
+      test('onFieldChanged should update state', () => {
+        const user = wrapper.find('CustomInput[name="username"]');
+        const password = wrapper.find('CustomInput[name="username"]');
+
+        user.simulate('change', 'username', foo);
+        password.simulate('change', 'password', foo);
+        expect(wrapper.state('username')).toBe(foo);
+        expect(wrapper.state('password')).toBe(foo);
+      });
+
+      test('should submit information', () => {
+        const preventDefault = jest.fn().mockName('preventDefault');
+
+        wrapper.simulate('submit', { preventDefault });
+        expect(preventDefault).toHaveBeenCalled();
+        expect(defaultProps.onLogin).toHaveBeenCalledWith(
+          wrapper.state('username'),
+          wrapper.state('password'),
+        );
+      });
+    });
+
+    describe('username <CustomInput />', () => {
+      test('should render with no children', () => {
+        const input = wrapper.find('CustomInput[name="username"]');
+
+        expect(input.exists()).toBe(true);
+        expect(input.children()).toHaveLength(0);
+      });
+
+      test('should have correct props passed', () => {
+        const input = wrapper.find('CustomInput[name="username"]');
+
+        expect(input.prop('name')).toBe('username');
+        expect(input.prop('disabled')).toEqual(expect.any(Boolean));
+        expect(input.prop('disabled')).toBe(defaultProps.isLoggingIn);
+        expect(input.prop('placeHolder')).toBe('Username');
+        expect(input.prop('value')).toBe(wrapper.state('username'));
+        expect(input.prop('onChange')).toEqual(expect.any(Function));
+      });
+    });
+
+    describe('password <CustomInput />', () => {
+      test('should render with no children', () => {
+        const input = wrapper.find('CustomInput[name="password"]');
+
+        expect(input.exists()).toBe(true);
+        expect(input.children()).toHaveLength(0);
+      });
+
+      test('should have correct props passed', () => {
+        const input = wrapper.find('CustomInput[name="password"]');
+
+        expect(input.prop('name')).toBe('password');
+        expect(input.prop('disabled')).toEqual(expect.any(Boolean));
+        expect(input.prop('disabled')).toBe(defaultProps.isLoggingIn);
+        expect(input.prop('placeHolder')).toBe('Password');
+        expect(input.prop('value')).toBe(wrapper.state('password'));
+        expect(input.prop('onChange')).toEqual(expect.any(Function));
+      });
+    });
+
+    describe('<SubmitButton />', () => {
+      test('should render with no children', () => {
+        const button = wrapper.find('SubmitButton');
+
+        expect(button.exists()).toBe(true);
+        expect(button.children()).toHaveLength(0);
+      });
+
+      test('SubmitButton should have correct props passed', () => {
+        const button = wrapper.find('SubmitButton');
+
+        expect(button.prop('submitting')).toEqual(expect.any(Boolean));
+        expect(button.prop('submitting')).toBe(defaultProps.isLoggingIn);
       });
     });
   });
@@ -163,14 +123,32 @@ describe('<LoginComponent />', () => {
   describe('No default props provided', () => {
     beforeEach(() => {
       defaultProps.isLoggingIn = undefined;
-      wrapper = shallow(<LoginComponent {...defaultProps} />);
+      wrapper = shallow(<LoginForm {...defaultProps} />);
     });
 
-    describe('<LoginForm />', () => {
+    describe('<form />', () => {
       test('isLoggingIn should be false', () => {
-        expect(wrapper.prop('isLoggingIn')).toBe(false);
+        expect(wrapper.instance().props.isLoggingIn).toBe(false);
+      });
+    });
+
+    describe('username <CustomInput />', () => {
+      test('isLoggingIn should be default value', () => {
+        const instance = wrapper.instance().props;
+
+        expect(wrapper.find('CustomInput[name="username"]')
+          .prop('disabled')).toBe(instance.isLoggingIn);
+      });
+    });
+
+    describe('password <CustomInput />', () => {
+      test('isLoggingIn should be default value', () => {
+        const instance = wrapper.instance().props;
+
+        expect(wrapper.find('CustomInput[name="password"]')
+          .prop('disabled')).toBe(instance.isLoggingIn);
       });
     });
   });
 });
-*/
+

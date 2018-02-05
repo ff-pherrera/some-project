@@ -1,33 +1,46 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import HomeComponent from '../LoginComponent';
+import LoginComponent from '../LoginComponent';
 
-describe('<HomeComponent />', () => {
+describe('<LoginComponent />', () => {
   let wrapper;
   let defaultProps;
-  const headerProp = 'testPropValue';
-  let onChangePropSpy;
 
   beforeEach(() => {
-    onChangePropSpy = jest.fn().mockName('onChange');
     defaultProps = {
-      header: headerProp,
-      onChange: onChangePropSpy,
+      isLoggingIn: false,
+      onLogin: jest.fn().mockName('onLogin'),
     };
-    wrapper = shallow(<HomeComponent {...defaultProps} />);
   });
 
-  test('should render component', () => {
-    expect(wrapper.exists()).toBe(true);
+  describe('default props provided', () => {
+    beforeEach(() => {
+      wrapper = shallow(<LoginComponent {...defaultProps} />);
+    });
+
+    describe('<LoginForm />', () => {
+      test('should render with no children', () => {
+        expect(wrapper.exists()).toBe(true);
+        expect(wrapper.children().length).toBe(0);
+      });
+
+      test('LoginForm should have correct props passed', () => {
+        expect(wrapper.prop('isLoggingIn')).toEqual(expect.any(Boolean));
+        expect(wrapper.prop('isLoggingIn')).toBe(defaultProps.isLoggingIn);
+        expect(wrapper.prop('onLogin')).toEqual(expect.any(Function));
+        expect(wrapper.prop('onLogin')).toBe(defaultProps.onLogin);
+      });
+    });
   });
 
-  test('should render header text', () => {
-    expect(wrapper.find('h1').text()).toBe(headerProp);
-  });
+  describe('no default props provided', () => {
+    beforeEach(() => {
+      defaultProps.isLoggingIn = undefined;
+      wrapper = shallow(<LoginComponent {...defaultProps} />);
+    });
 
-  test('should pass correct props to CustomInput', () => {
-    expect(wrapper.find('CustomInput').prop('value')).toBe(headerProp);
-    expect(wrapper.find('CustomInput').prop('onChange'))
-      .toEqual(expect.any(Function));
+    test('isLoggingIn should be false', () => {
+      expect(wrapper.prop('isLoggingIn')).toBe(false);
+    });
   });
 });

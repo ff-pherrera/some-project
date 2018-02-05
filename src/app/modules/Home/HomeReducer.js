@@ -9,7 +9,7 @@ const HomeReducer = (state = initialState, action) => {
   case SET_HEADER:
     return {
       ...state,
-      header: action.header,
+      header: action.value,
     };
   case CLEAR_HEADER:
     return {

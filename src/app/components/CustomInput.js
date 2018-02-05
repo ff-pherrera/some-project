@@ -8,23 +8,23 @@ const defaultProps = {
 };
 
 const propTypes = {
+  name: T.string.isRequired,
+  value: T.string.isRequired,
   className: T.string,
   placeHolder: T.string,
   disabled: T.bool,
   onChange: T.func.isRequired,
-  value: T.string.isRequired,
-  name: T.string.isRequired,
 };
 
 const CustomInput = props => (
   <input
     type="text"
     name={props.name}
+    value={props.value}
     className={props.className}
     placeholder={props.placeHolder}
     disabled={props.disabled}
     onChange={e => props.onChange(props.name, e.target.value)}
-    value={props.value}
   />
 );
 

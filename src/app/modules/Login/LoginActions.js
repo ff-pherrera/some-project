@@ -7,16 +7,17 @@ export const setLoggingIn = value => ({
   value,
 });
 
-export const logIn = (username, password) => (
+export const login = (username, password) => (
   (dispatch) => {
     dispatch(setLoggingIn(true));
-    return authService.attemptLogIn(username, password)
+    return authService.attemptLogin(username, password)
       .then(() => {
         dispatch(setLoggingIn(false));
         routingService.goToHome();
       })
-      .catch(() => {
+      .catch((err) => {
         dispatch(setLoggingIn(false));
+        return err;
       });
   }
 );

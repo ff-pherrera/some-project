@@ -1,18 +1,25 @@
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import * as actions from '../HomeActions';
 import * as actionTypes from '../HomeActionTypes';
+import routingService from '../../../services/routingService';
+
+jest.mock('../../../services/routingService');
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe('HomeActions', () => {
-  describe('Sync actions', () => {
-    let header;
+  describe('sync', () => {
     let expectedAction;
+    const value = 'foo';
 
     test('should create an action to set the header', () => {
-      header = 'New Header';
       expectedAction = {
         type: actionTypes.SET_HEADER,
-        header,
+        value,
       };
-      expect(actions.setHeader(header)).toEqual(expectedAction);
+      expect(actions.setHeader(value)).toEqual(expectedAction);
     });
 
     test('should create an action to clear the header', () => {
@@ -22,7 +29,18 @@ describe('HomeActions', () => {
       expect(actions.clearHeader()).toEqual(expectedAction);
     });
   });
-  describe('async actions', () => {
-    // Set tests in here for async actions, using redux-thunk
+
+  describe('async', () => {
+    let store;
+
+    beforeEach(() => {
+      // Currently not used but might be used in the future
+      store = mockStore({ isLoggingIn: false });
+    });
+
+    test('should logout', () => {
+      store.dispatch(actions.logout());
+      expect(routingService.goToLogin).toHaveBeenCalled();
+    });
   });
 });

@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => ({
 export const LoginWrapper = props => (
   <LoginComponent
     isLoggingIn={props.isLoggingIn}
-    onLogin={props.actions.logIn}
+    onLogin={props.actions.login}
   />
 );
 

@@ -1,22 +1,20 @@
 import reducer from '../LoginReducer';
-import * as actionTypes from '../LoginActionTypes';
+import actionTypes from '../LoginActionTypes';
 
-describe('HomeReducer', () => {
+describe('LoginReducer', () => {
   const initialState = {
-    header: '',
+    isLoggingIn: false,
   };
+  const foo = true;
 
   test('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState);
   });
 
-  test('should handle change of header', () => {
-    expect(reducer({}, { type: actionTypes.SET_HEADER, header: 'Some header' }))
-      .toEqual({ header: 'Some header' });
-  });
-
-  test('should handle clearing of header', () => {
-    expect(reducer({}, { type: actionTypes.CLEAR_HEADER }))
-      .toEqual({ header: '' });
+  test('should handle isLoggingIn change', () => {
+    expect(reducer(initialState, {
+      type: actionTypes.SET_IS_LOGGING_IN,
+      value: foo,
+    })).toEqual({ isLoggingIn: foo });
   });
 });

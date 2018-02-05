@@ -1,16 +1,16 @@
 import routingService from '../../services/routingService';
 import { SET_HEADER, CLEAR_HEADER } from './HomeActionTypes';
 
-export const setHeader = header => ({
+export const setHeader = value => ({
   type: SET_HEADER,
-  header,
+  value,
 });
 
 export const clearHeader = () => ({
   type: CLEAR_HEADER,
 });
 
-export const logOut = () => (
+export const logout = () => (
   () => {
     routingService.goToLogin();
   }

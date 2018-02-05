@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import T from 'prop-types';
-import CustomInput from '../CustomInput/CustomInput';
-import SubmitButton from '../SubmitButton/SubmitButton';
+import CustomInput from './CustomInput';
+import SubmitButton from './SubmitButton';
 
 const defaultProps = {
   isLoggingIn: false,

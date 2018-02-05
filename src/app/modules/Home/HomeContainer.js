@@ -25,8 +25,8 @@ const mapDispatchToProps = dispatch => ({
 export const HomeWrapper = props => (
   <HomeComponent
     header={props.header}
-    onChange={(name, value) => props.actions.setHeader(value)}
-    onLogout={props.actions.logOut}
+    onHeaderChange={(name, value) => props.actions.setHeader(value)}
+    onLogout={props.actions.logout}
   />
 );
 

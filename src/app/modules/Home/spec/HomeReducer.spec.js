@@ -5,18 +5,21 @@ describe('HomeReducer', () => {
   const initialState = {
     header: '',
   };
+  const foo = 'foo';
 
   test('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState);
   });
 
-  test('should handle change of header', () => {
-    expect(reducer({}, { type: actionTypes.SET_HEADER, header: 'Some header' }))
-      .toEqual({ header: 'Some header' });
+  test('should handle header change', () => {
+    expect(reducer(initialState, {
+      type: actionTypes.SET_HEADER,
+      value: foo,
+    })).toEqual({ header: foo });
   });
 
-  test('should handle clearing of header', () => {
+  test('should handle header clearing', () => {
     expect(reducer({}, { type: actionTypes.CLEAR_HEADER }))
-      .toEqual({ header: '' });
+      .toEqual(initialState);
   });
 });

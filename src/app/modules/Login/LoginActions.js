@@ -15,8 +15,9 @@ export const login = (username, password) => (
         dispatch(setLoggingIn(false));
         routingService.goToHome();
       })
-      .catch(() => {
+      .catch((err) => {
         dispatch(setLoggingIn(false));
+        return err;
       });
   }
 );

@@ -9,8 +9,8 @@ describe('<CustomInput />', () => {
 
   beforeEach(() => {
     defaultProps = {
-      name: 'name',
-      value: 'value',
+      name: 'foo',
+      value: 'foo',
       className: '',
       placeHolder: '',
       disabled: false,

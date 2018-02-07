@@ -20,7 +20,8 @@ describe('LoginActions', () => {
       store = mockStore({ isLoggingIn: false });
     });
 
-    test('login should fail with invalid credentials', () => {
+    test('login should fail with invalid credentials', async () => {
+      expect.assertions(3);
       authService.attemptLogin
         .mockReturnValue(Promise.reject(new Error('Invalid credentials')));
 
@@ -29,15 +30,26 @@ describe('LoginActions', () => {
         { type: actionTypes.default.SET_IS_LOGGING_IN, value: false },
       ];
 
+      const err = await store.dispatch(actions.login());
+
+      expect(store.getActions()).toEqual(expectedActions);
+      expect(err instanceof Error).toBe(true);
+      expect(err.message).toBe('Invalid credentials');
+
+      /**
+      // Can also be written as
       return store.dispatch(actions.login())
         .then((err) => {
           expect(store.getActions()).toEqual(expectedActions);
           expect(err instanceof Error).toBe(true);
           expect(err.message).toBe('Invalid credentials');
         });
+      })
+      */
     });
 
-    test('login should success', () => {
+    test('login should success', async () => {
+      expect.assertions(2);
       authService.attemptLogin.mockReturnValue(Promise.resolve());
 
       expectedActions = [
@@ -45,11 +57,19 @@ describe('LoginActions', () => {
         { type: actionTypes.default.SET_IS_LOGGING_IN, value: false },
       ];
 
+      await store.dispatch(actions.login());
+      expect(store.getActions()).toEqual(expectedActions);
+      expect(routingService.goToHome).toHaveBeenCalled();
+
+      /**
+      // Can also be written as
       return store.dispatch(actions.login())
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
           expect(routingService.goToHome).toHaveBeenCalled();
         });
+      });
+      */
     });
   });
 });
